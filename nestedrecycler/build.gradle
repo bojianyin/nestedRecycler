@@ -3,18 +3,19 @@ plugins {
     id 'kotlin-android'
     id 'maven-publish'
 }
-//apply plugin: 'com.github.dcendents.android-maven'
-//group='com.github.bojianyin' // ××××代表你github名字
+ext {
+    currentPackageVersion = '1.2.0'
+}
 
 android {
-    compileSdkVersion 33
+    compileSdkVersion 31
     buildToolsVersion "30.0.3"
 
     defaultConfig {
         minSdkVersion 16
-        targetSdkVersion 33
+        targetSdkVersion 31
         versionCode 1
-        versionName "1.0"
+        versionName "$currentPackageVersion"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -52,7 +53,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'com.xb.nestedRecycler' //groupId 随便取
                 artifactId = 'nestedRecycler'  //artifactId 随便取
-                version = '1.2.0'
+                version = "$currentPackageVersion"
             }
         }
     }
