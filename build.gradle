@@ -2,8 +2,14 @@
 buildscript {
     ext.kotlin_version = "1.5.31"
     repositories {
-        google()
-        mavenCentral()
+//        google()
+//        mavenCentral()
+        maven {
+            url 'http://localhost:8081/repository/aliyun_agp/'
+        }
+        maven {
+            url 'http://localhost:8081/repository/group_list/'
+        }
     }
     dependencies {
         classpath "com.android.tools.build:gradle:4.2.1"
@@ -16,10 +22,22 @@ buildscript {
 
 allprojects {
     repositories {
-        google()
-        mavenCentral()
-        jcenter() // Warning: this repository is going to shut down soon
-        maven { url 'https://jitpack.io' }
+//        google()
+//        mavenCentral()
+//        jcenter() // Warning: this repository is going to shut down soon
+//        maven { url 'https://jitpack.io' }
+//        mavenLocal()
+
+        maven {
+            url 'http://localhost:8081/repository/group_list/'
+        }
+
+        maven {
+            url 'http://localhost:8081/repository/my_repo/'
+        }
+//        maven {
+//            url 'http://localhost:8081/repository/my_jitpack/'
+//        }
     }
 }
 

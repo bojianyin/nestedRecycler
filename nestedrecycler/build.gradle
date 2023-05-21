@@ -3,8 +3,9 @@ plugins {
     id 'kotlin-android'
     id 'maven-publish'
 }
+
 ext {
-    currentPackageVersion = '1.2.0'
+    currentPackageVersion = '1.3.0'
 }
 
 android {
@@ -46,14 +47,33 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 }
 
+//publishing {
+//    repositories {
+//        maven {
+//            credentials {
+//                username 'bojianyin'
+//                password 'bjy131400..'
+//            }
+//            url 'https://www.jitpack.io/' // 仓库地址
+//
+////            allowInsecureProtocol = true
+//
+//        }
+//    }
+//}
 afterEvaluate {
     publishing {
         publications {
             release(MavenPublication) {
-                from components.release
-                groupId = 'com.xb.nestedRecycler' //groupId 随便取
-                artifactId = 'nestedRecycler'  //artifactId 随便取
-                version = "$currentPackageVersion"
+                // 添加以下配置可以自动从编译容器中获取release版本内容（使用debug可以获取debug版本内容），并生成pom文件
+                // 注意：发布物声明必须在 afterEvaluate 内部，因为 components 在 afterEvaluate 阶段才生成完成
+                from components.release //可以配置成debug 或者release
+
+                version "$currentPackageVersion"//版本
+                artifactId 'nestedRecycler'
+                groupId = 'com.xb.nestedRecycler'
+                description ''
+
             }
         }
     }
